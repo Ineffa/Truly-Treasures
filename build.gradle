@@ -18,7 +18,7 @@ mixin {
     add sourceSets.main, "trulytreasures.refmap.json"
 }
 
-version = '2.1'
+version = '2.1.1'
 group = 'com.snugz.trulytreasures'
 archivesBaseName = 'trulytreasures'
 
@@ -94,7 +94,7 @@ jar {
         attributes([
                 "Specification-Title": "Truly Treasures",
                 "Specification-Vendor": "Snugz",
-                "Specification-Version": "2.1", // We are version 1 of ourselves
+                "Specification-Version": "2.1.1", // We are version 1 of ourselves
                 "Implementation-Title": project.name,
                 "Implementation-Version": "${version}",
                 "Implementation-Vendor" :"Snugz",
