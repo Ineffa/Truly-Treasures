@@ -20,23 +20,31 @@ public class Events {
 
     @SubscribeEvent
     public static void onWandererTrades(WandererTradesEvent event) {
-        List<Enchantment> enchantmentList = TrulyTreasuresConfig.sellCurses.get() ?
-                Registry.ENCHANTMENT.stream().filter((e) -> {
-            return e.isTreasureOnly() && e.isTradeable();
-        }).collect(Collectors.toList())
-                :
-                Registry.ENCHANTMENT.stream().filter((e) -> {
-            return e.isTreasureOnly() && e.isTradeable() && !e.isCurse();
-        }).collect(Collectors.toList());
+        List<String> exceptions = TrulyTreasuresConfig.wandererEnchantmentExceptions.get();
+        List<String> cursedEnchantments = TrulyTreasuresConfig.enchantmentsWithCurses.get();
+        List<Enchantment> enchantmentList = TrulyTreasuresConfig.sellCurses.get() ? Registry.ENCHANTMENT.stream().filter((e) -> { return !exceptions.contains(e.getRegistryName().toString()) && e.isTreasureOnly() && e.isTradeable(); }).collect(Collectors.toList()) : Registry.ENCHANTMENT.stream().filter((e) -> { return !exceptions.contains(e.getRegistryName().toString()) && e.isTreasureOnly() && e.isTradeable() && !e.isCurse(); }).collect(Collectors.toList());
+        List<Enchantment> curseList = Registry.ENCHANTMENT.stream().filter((c) -> { return c.isCurse() && c.isTradeable(); }).collect(Collectors.toList());
 
         for (Enchantment enchantment : enchantmentList) {
             for (int level = enchantment.getMinLevel(); level <= enchantment.getMaxLevel(); level++) {
-                ItemStack itemStack = EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, level));
-                itemStack.setCount(1);
+                ItemStack enchantedBook = EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, level));
+                enchantedBook.setCount(1);
                 int basePrice = TrulyTreasuresConfig.basePrice.get();
                 int emeralds = enchantment.getMaxLevel() == 1 ? basePrice * 2 : Mth.clamp(basePrice * level, 0, 64);
                 int xp = enchantment.getMaxLevel() == 1 ? 10 : 5 * level;
-                event.getRareTrades().add(new BasicTrade(emeralds, itemStack, TrulyTreasuresConfig.maxTrades.get(), xp));
+
+                if (cursedEnchantments.contains(enchantment.getRegistryName().toString())) {
+                    for (Enchantment curse : curseList) {
+                        for (int curseLevel = curse.getMinLevel(); curseLevel <= curse.getMaxLevel(); curseLevel++) {
+                            ItemStack cursedEnchantedBook = EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, level));
+                            cursedEnchantedBook.enchant(curse, curseLevel);
+                            cursedEnchantedBook.setCount(1);
+
+                            event.getRareTrades().add(new BasicTrade(emeralds, cursedEnchantedBook, TrulyTreasuresConfig.maxTrades.get(), xp));
+                        }
+                    }
+                }
+                else event.getRareTrades().add(new BasicTrade(emeralds, enchantedBook, TrulyTreasuresConfig.maxTrades.get(), xp));
             }
         }
     }
