@@ -11,7 +11,7 @@ license = "All rights reserved"
 
 modId = "trulytreasures" #mandatory
 
-version = "2.1.1" #mandatory
+version = "2.2" #mandatory
 
 displayName = "Truly Treasures" #mandatory
 
