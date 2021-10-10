@@ -1,5 +1,6 @@
 package com.snugz.trulytreasures.mixin;
 
+import com.snugz.trulytreasures.config.TrulyTreasuresConfig;
 import net.minecraft.core.Registry;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -29,8 +30,9 @@ public class EnchantBookForEmeraldsMixin {
 
     @Inject(at = @At("HEAD"), method = "getOffer", cancellable = true)
     private void removeTreasureEnchantments(Entity p_35685_, Random p_35686_, CallbackInfoReturnable<MerchantOffer> callback) {
+        List<String> exceptions = TrulyTreasuresConfig.villagerEnchantmentExceptions.get();
         List<Enchantment> list = Registry.ENCHANTMENT.stream().filter((e) -> {
-            return !e.isTreasureOnly() && e.isTradeable();
+            return exceptions.contains(e.getRegistryName().toString()) ? e.isTradeable() : !e.isTreasureOnly() && e.isTradeable();
         }).collect(Collectors.toList());
         Enchantment enchantment = list.get(p_35686_.nextInt(list.size()));
         int i = Mth.nextInt(p_35686_, enchantment.getMinLevel(), enchantment.getMaxLevel());
