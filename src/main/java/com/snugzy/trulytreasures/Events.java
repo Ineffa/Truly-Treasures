@@ -1,13 +1,13 @@
-package com.snugz.trulytreasures;
+package com.snugzy.trulytreasures;
 
-import com.snugz.trulytreasures.config.TrulyTreasuresConfig;
+import com.snugzy.trulytreasures.config.TrulyTreasuresConfig;
 import net.minecraft.core.Registry;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
-import net.minecraftforge.common.BasicTrade;
+import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -40,11 +40,11 @@ public class Events {
                             cursedEnchantedBook.enchant(curse, curseLevel);
                             cursedEnchantedBook.setCount(1);
 
-                            event.getRareTrades().add(new BasicTrade(emeralds, cursedEnchantedBook, TrulyTreasuresConfig.maxTrades.get(), xp));
+                            event.getRareTrades().add(new BasicItemListing(emeralds, cursedEnchantedBook, TrulyTreasuresConfig.maxTrades.get(), xp));
                         }
                     }
                 }
-                else event.getRareTrades().add(new BasicTrade(emeralds, enchantedBook, TrulyTreasuresConfig.maxTrades.get(), xp));
+                else event.getRareTrades().add(new BasicItemListing(emeralds, enchantedBook, TrulyTreasuresConfig.maxTrades.get(), xp));
             }
         }
     }
