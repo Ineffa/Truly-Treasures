@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.snugz.trulytreasures.mixin",
+  "package": "com.snugzy.trulytreasures.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "EnchantBookFactoryMixin"

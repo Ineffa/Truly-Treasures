@@ -1,4 +1,4 @@
-package com.snugz.trulytreasures;
+package com.snugzy.trulytreasures;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;

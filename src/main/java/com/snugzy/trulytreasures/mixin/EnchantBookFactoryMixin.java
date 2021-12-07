@@ -1,4 +1,4 @@
-package com.snugz.trulytreasures.mixin;
+package com.snugzy.trulytreasures.mixin;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
