@@ -1,10 +1,10 @@
 buildscript {
     repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
         classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
@@ -18,16 +18,16 @@ mixin {
     add sourceSets.main, "trulytreasures.refmap.json"
 }
 
-version = 'forge-1.18-2.2.1'
-group = 'com.snugzy.trulytreasures'
-archivesBaseName = 'trulytreasures'
+version = '2.2'
+group = 'com.snugz.trulytreasures' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "trulytreasures"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
 
-    mappings channel: 'official', version: '1.18'
+    mappings channel: 'snapshot', version: '20210309-1.16.5'
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -53,7 +53,12 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
 
+            // Recommended logging level for the console
+            // You can set various levels here.
+            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
+
+            arg "-mixin.config=trulytreasures.mixins.json"
 
             mods {
                 trulytreasures {
@@ -83,22 +88,22 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18-38.0.14'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
 
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 }
 
 jar {
     manifest {
         attributes([
-                "Specification-Title": "Truly Treasures",
-                "Specification-Vendor": "Snugzy",
-                "Specification-Version": "forge-1.18-2.2.1", // We are version 1 of ourselves
-                "Implementation-Title": project.name,
-                "Implementation-Version": "${version}",
-                "Implementation-Vendor" :"Snugzy",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "trulytreasures.mixins.json"
+            "Specification-Title": "Truly Treasures",
+            "Specification-Vendor": "Snugz",
+            "Specification-Version": "2.2",
+            "Implementation-Title": project.name,
+            "Implementation-Version": "${version}",
+            "Implementation-Vendor" :"Snugz",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            "MixinConfigs": "trulytreasures.mixins.json"
         ])
     }
 }
@@ -113,7 +118,7 @@ publishing {
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+            url "file:///${project.projectDir}/mcmodsrepo"
         }
     }
 }

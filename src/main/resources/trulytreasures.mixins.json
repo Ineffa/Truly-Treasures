@@ -1,10 +1,10 @@
 {
   "required": true,
-  "package": "com.snugzy.trulytreasures.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "package": "com.snugz.trulytreasures.mixin",
+  "compatibilityLevel": "JAVA_8",
   "refmap": "trulytreasures.refmap.json",
   "mixins": [
-    "EnchantBookForEmeraldsMixin"
+    "EnchantedBookForEmeraldsTradeMixin"
   ],
-  "minVersion": "0.8.5"
+  "minVersion": "0.8"
 }
