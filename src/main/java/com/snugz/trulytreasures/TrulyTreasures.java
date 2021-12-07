@@ -1,6 +1,6 @@
-package com.snugzy.trulytreasures;
+package com.snugz.trulytreasures;
 
-import com.snugzy.trulytreasures.config.TrulyTreasuresConfig;
+import com.snugz.trulytreasures.config.TrulyTreasuresConfig;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;

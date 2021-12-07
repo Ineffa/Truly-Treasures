@@ -1,6 +1,6 @@
-package com.snugzy.trulytreasures.mixin;
+package com.snugz.trulytreasures.mixin;
 
-import com.snugzy.trulytreasures.config.TrulyTreasuresConfig;
+import com.snugz.trulytreasures.config.TrulyTreasuresConfig;
 import net.minecraft.core.Registry;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
