@@ -10,7 +10,7 @@ issueTrackerURL="https://github.com/Snugzy/Truly-Treasures/issues" #optional
 
 modId = "trulytreasures" #mandatory
 
-version = "forge-1.17.1-2.2.2" #mandatory
+version = "1.17.1-2.2.2" #mandatory
 
 displayName = "Truly Treasures" #mandatory
 
