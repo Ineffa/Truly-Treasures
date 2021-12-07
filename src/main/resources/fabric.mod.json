@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "trulytreasures",
+  "version": "${version}",
+
+  "name": "Truly Treasures",
+  "description": "A simple mod to remove treasure enchantments from villager trades and add them to wandering traders instead, in order to make them truly rare and special enchantments",
+  "authors": [
+    "Snugz"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/truly-treasures",
+    "sources": "https://github.com/Snugzz/Truly-Treasures-Fabric"
+  },
+
+  "license": "All rights reserved",
+  "icon": "assets/trulytreasures/truly_treasures_icon.png",
+  "accessWidener" : "trulytreasures.accesswidener",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.snugz.trulytreasures.TrulyTreasures"
+    ]
+  },
+  "mixins": [
+    "trulytreasures.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  }
+}
