@@ -1,6 +1,6 @@
-package com.snugz.trulytreasures;
+package com.snugzy.trulytreasures;
 
-import com.snugz.trulytreasures.config.TrulyTreasuresConfig;
+import com.snugzy.trulytreasures.config.TrulyTreasuresConfig;
 import net.minecraft.core.Registry;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.EnchantedBookItem;

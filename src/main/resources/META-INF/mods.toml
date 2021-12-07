@@ -2,16 +2,15 @@ modLoader = "javafml" #mandatory
 
 loaderVersion = "[37,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 
-license = "All rights reserved"
+license = "GNU General Public License v3.0"
 
-# A URL to refer people to when problems occur with this mod
-#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+issueTrackerURL="https://github.com/Snugzy/Truly-Treasures/issues" #optional
 
 [[mods]] #mandatory
 
 modId = "trulytreasures" #mandatory
 
-version = "2.2" #mandatory
+version = "forge-1.17.1-2.2.2" #mandatory
 
 displayName = "Truly Treasures" #mandatory
 
@@ -22,7 +21,7 @@ displayURL = "https://www.curseforge.com/minecraft/mc-mods/truly-treasures" #opt
 
 logoFile = "truly_treasures_logo.png" #optional
 
-authors = "Snugz" #optional
+authors = "Snugzy" #optional
 
 credits = "" #optional
 
