@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.snugz.trulytreasures.mixin",
+  "package": "com.snugzy.trulytreasures.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "trulytreasures.refmap.json",
   "mixins": [

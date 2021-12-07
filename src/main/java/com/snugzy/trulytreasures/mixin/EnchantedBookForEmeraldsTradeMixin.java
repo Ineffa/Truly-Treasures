@@ -1,6 +1,6 @@
-package com.snugz.trulytreasures.mixin;
+package com.snugzy.trulytreasures.mixin;
 
-import com.snugz.trulytreasures.config.TrulyTreasuresConfig;
+import com.snugzy.trulytreasures.config.TrulyTreasuresConfig;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.Entity;

@@ -18,8 +18,8 @@ mixin {
     add sourceSets.main, "trulytreasures.refmap.json"
 }
 
-version = '2.2'
-group = 'com.snugz.trulytreasures' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = 'forge-1.16.5-2.2.2'
+group = 'com.snugzy.trulytreasures' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "trulytreasures"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
@@ -97,11 +97,11 @@ jar {
     manifest {
         attributes([
             "Specification-Title": "Truly Treasures",
-            "Specification-Vendor": "Snugz",
-            "Specification-Version": "2.2",
+            "Specification-Vendor": "Snugzy",
+            "Specification-Version": "forge-1.16.5-2.2.2",
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"Snugz",
+            "Implementation-Vendor" :"Snugzy",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
             "MixinConfigs": "trulytreasures.mixins.json"
         ])

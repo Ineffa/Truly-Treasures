@@ -1,4 +1,4 @@
-package com.snugz.trulytreasures.config;
+package com.snugzy.trulytreasures.config;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
