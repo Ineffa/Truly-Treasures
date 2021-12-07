@@ -10,8 +10,8 @@
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/truly-treasures",
-    "sources": "https://github.com/Snugzy/Truly-Treasures-Fabric",
-    "issues": "https://github.com/Snugzy/Truly-Treasures-Fabric/issues"
+    "sources": "https://github.com/Snugzy/Truly-Treasures",
+    "issues": "https://github.com/Snugzy/Truly-Treasures/issues"
   },
 
   "license": "GNU General Public License v3.0",
