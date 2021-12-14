@@ -1,0 +1,19 @@
+{
+  "text.autoconfig.trulytreasures.title": "Truly Treasures Configuration",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings": "Wandering Trader Settings",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.basePrice": "Base Treasure Enchantment Price",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.basePrice.@Tooltip[0]": "Base value used to calculate the price of every possible treasure enchantment book trade",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.basePrice.@Tooltip[1]": "Enchantments that don't use levels (e.g Mending) will always use this value multiplied by 2",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.basePrice.@Tooltip[2]": "Enchantments that DO use levels (e.g Frost Walker) will use this value multiplied by their level",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.maxTrades": "Maximum Treasure Enchantment Trades",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.maxTrades.@Tooltip": "Maximum number of times you can buy from the same treasure enchantment book trade",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.sellCurses": "Sell Curse Enchantments",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.sellCurses.@Tooltip": "Whether wandering traders should be able to sell curse enchantments or not",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.wandererEnchantmentExceptions": "Treasure Enchantments Not to Sell",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.wandererEnchantmentExceptions.@Tooltip[0]": "List of treasure enchantments that should not be sold by wandering traders",
+  "text.autoconfig.trulytreasures.option.wanderingTraderSettings.wandererEnchantmentExceptions.@Tooltip[1]": "Entries must be their full ID. Example: minecraft:frost_walker",
+  "text.autoconfig.trulytreasures.option.villagerSettings": "Villager Settings",
+  "text.autoconfig.trulytreasures.option.villagerSettings.villagerEnchantmentExceptions": "Treasure Enchantments to Keep",
+  "text.autoconfig.trulytreasures.option.villagerSettings.villagerEnchantmentExceptions.@Tooltip[0]": "List of treasure enchantments that should not be removed villagers",
+  "text.autoconfig.trulytreasures.option.villagerSettings.villagerEnchantmentExceptions.@Tooltip[1]": "Entries must be their full ID. Example: minecraft:frost_walker"
+}

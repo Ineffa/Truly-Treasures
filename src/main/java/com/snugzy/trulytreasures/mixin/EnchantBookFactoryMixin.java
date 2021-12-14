@@ -1,5 +1,6 @@
 package com.snugzy.trulytreasures.mixin;
 
+import com.snugzy.trulytreasures.TrulyTreasures;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.Entity;
@@ -29,10 +30,9 @@ public class EnchantBookFactoryMixin {
 
     @Inject(at = @At("HEAD"), method = "create", cancellable = true)
     private void removeTreasureEnchantments(Entity entity, Random random, CallbackInfoReturnable<TradeOffer> callback) {
-        List<Enchantment> list = Registry.ENCHANTMENT.stream().filter((e) -> {
-            return !e.isTreasure() && e.isAvailableForEnchantedBookOffer();
-        }).collect(Collectors.toList());
-        Enchantment enchantment = list.get(random.nextInt(list.size()));
+        List<String> exceptions = TrulyTreasures.config.villagerSettings.villagerEnchantmentExceptions;
+        List<Enchantment> enchantmentList = Registry.ENCHANTMENT.stream().filter((e) -> exceptions.contains(Registry.ENCHANTMENT.getId(e).toString()) ? e.isAvailableForEnchantedBookOffer() : !e.isTreasure() && e.isAvailableForEnchantedBookOffer()).collect(Collectors.toList());
+        Enchantment enchantment = enchantmentList.get(random.nextInt(enchantmentList.size()));
         int i = MathHelper.nextInt(random, enchantment.getMinLevel(), enchantment.getMaxLevel());
         ItemStack itemStack = EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantment, i));
         int j = 2 + random.nextInt(5 + i * 10) + 3 * i;
@@ -40,6 +40,9 @@ public class EnchantBookFactoryMixin {
         if (j > 64) {
             j = 64;
         }
+
+        // Debug
+        // enchantmentList.forEach(e -> System.out.println(Registry.ENCHANTMENT.getId(e).toString()));
 
         callback.setReturnValue(new TradeOffer(new ItemStack(Items.EMERALD, j), new ItemStack(Items.BOOK), itemStack, 12, this.experience, 0.2F));
     }
