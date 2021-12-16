@@ -61,7 +61,7 @@ public class TrulyTreasures implements ModInitializer {
         int price = enchantment.getMaxLevel() == 1 ? basePrice * 2 : MathHelper.clamp(basePrice * level, 0, 64);
         int xp = enchantment.getMaxLevel() == 1 ? 10 : 5 * level;
 
-        TradeOfferHelper.registerWanderingTraderOffers(maxTrades, (factory -> factory.add(((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, price), book, maxTrades, xp, 1.0F)))));
+        TradeOfferHelper.registerWanderingTraderOffers(2, (factory -> factory.add(((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, price), book, maxTrades, xp, 1.0F)))));
 
         // Debug
         // System.out.println(Registry.ENCHANTMENT.getId(enchantment).toString() + " level " + level + " price is " + price);
