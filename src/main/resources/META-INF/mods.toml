@@ -2,7 +2,7 @@ modLoader = "javafml" #mandatory
 
 loaderVersion = "[38,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 
-license = "GNU General Public License v3.0"
+license = "GNU Lesser General Public License v3.0"
 
 issueTrackerURL="https://github.com/Snugzy/Truly-Treasures/issues" #optional
 
@@ -10,7 +10,7 @@ issueTrackerURL="https://github.com/Snugzy/Truly-Treasures/issues" #optional
 
 modId = "trulytreasures" #mandatory
 
-version = "1.18-2.2.2" #mandatory
+version = "1.18.1-2.2.3" #mandatory
 
 displayName = "Truly Treasures" #mandatory
 
@@ -22,4 +22,4 @@ authors = "Snugzy" #optional
 
 credits = "" #optional
 
-description = '''A simple mod to remove treasure enchantments from villager trades and add them to wandering traders instead, in order to make them truly rare and special enchantments'''
+description = '''Highly configurable mod that makes wandering traders sell treasure enchantments instead of villagers, making them truly rare and special enchantments'''
