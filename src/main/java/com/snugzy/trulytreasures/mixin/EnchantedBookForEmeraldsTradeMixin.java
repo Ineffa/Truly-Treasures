@@ -31,9 +31,7 @@ public class EnchantedBookForEmeraldsTradeMixin {
     @Inject(at = @At("HEAD"), method = "getOffer", cancellable = true)
     private void removeTreasureEnchantments(Entity trader, Random rand, CallbackInfoReturnable<MerchantOffer> callback) {
         List<String> exceptions = TrulyTreasuresConfig.villagerEnchantmentExceptions.get();
-        List<Enchantment> list = Registry.ENCHANTMENT.stream().filter((e) -> {
-            return exceptions.contains(e.getRegistryName().toString()) ? e.canVillagerTrade() : !e.isTreasureEnchantment() && e.canVillagerTrade();
-        }).collect(Collectors.toList());
+        List<Enchantment> list = Registry.ENCHANTMENT.stream().filter((e) -> !TrulyTreasuresConfig.removeTreasureEnchantments.get() || exceptions.contains(e.getRegistryName().toString()) ? e.canVillagerTrade() : !e.isTreasureEnchantment() && e.canVillagerTrade()).collect(Collectors.toList());
         Enchantment enchantment = list.get(rand.nextInt(list.size()));
         int i = MathHelper.nextInt(rand, enchantment.getMinLevel(), enchantment.getMaxLevel());
         ItemStack itemstack = EnchantedBookItem.getEnchantedItemStack(new EnchantmentData(enchantment, i));
