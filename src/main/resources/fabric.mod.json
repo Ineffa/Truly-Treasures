@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Truly Treasures",
-  "description": "A simple mod to remove treasure enchantments from villager trades and add them to wandering traders instead, in order to make them truly rare and special enchantments",
+  "description": "Highly configurable mod that makes wandering traders sell treasure enchantments instead of villagers, making them truly rare and special enchantments",
   "authors": [
     "Snugzy"
   ],
