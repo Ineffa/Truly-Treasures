@@ -31,7 +31,7 @@ public class EnchantBookFactoryMixin {
     @Inject(at = @At("HEAD"), method = "create", cancellable = true)
     private void removeTreasureEnchantments(Entity entity, Random random, CallbackInfoReturnable<TradeOffer> callback) {
         List<String> exceptions = TrulyTreasures.config.villagerSettings.villagerEnchantmentExceptions;
-        List<Enchantment> enchantmentList = Registry.ENCHANTMENT.stream().filter((e) -> exceptions.contains(Registry.ENCHANTMENT.getId(e).toString()) ? e.isAvailableForEnchantedBookOffer() : !e.isTreasure() && e.isAvailableForEnchantedBookOffer()).collect(Collectors.toList());
+        List<Enchantment> enchantmentList = Registry.ENCHANTMENT.stream().filter((e) -> !TrulyTreasures.config.villagerSettings.removeTreasureEnchantments || exceptions.contains(Registry.ENCHANTMENT.getId(e).toString()) ? e.isAvailableForEnchantedBookOffer() : !e.isTreasure() && e.isAvailableForEnchantedBookOffer()).collect(Collectors.toList());
         Enchantment enchantment = enchantmentList.get(random.nextInt(enchantmentList.size()));
         int i = MathHelper.nextInt(random, enchantment.getMinLevel(), enchantment.getMaxLevel());
         ItemStack itemStack = EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantment, i));

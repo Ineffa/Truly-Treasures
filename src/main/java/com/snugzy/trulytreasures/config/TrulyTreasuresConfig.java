@@ -32,13 +32,20 @@ public class TrulyTreasuresConfig implements ConfigData {
         @ConfigEntry.Gui.RequiresRestart
         public boolean sellCurses = false;
 
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.Gui.RequiresRestart
+        public boolean sellTreasureEnchantments = true;
+
         @ConfigEntry.Gui.Tooltip(count = 2)
         @ConfigEntry.Gui.RequiresRestart
-        public List<String> wandererEnchantmentExceptions = Lists.newArrayList("");
+        public List<String> wandererEnchantmentExceptions = Lists.newArrayList();
     }
 
     public static class VillagerSettings {
+        @ConfigEntry.Gui.Tooltip
+        public boolean removeTreasureEnchantments = true;
+
         @ConfigEntry.Gui.Tooltip(count = 2)
-        public List<String> villagerEnchantmentExceptions = Lists.newArrayList("");
+        public List<String> villagerEnchantmentExceptions = Lists.newArrayList();
     }
 }

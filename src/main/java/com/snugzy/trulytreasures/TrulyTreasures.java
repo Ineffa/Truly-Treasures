@@ -26,6 +26,8 @@ public class TrulyTreasures implements ModInitializer {
     public void onInitialize() {
         AutoConfig.register(TrulyTreasuresConfig.class, GsonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(TrulyTreasuresConfig.class).getConfig();
+
+        if (!config.wanderingTraderSettings.sellTreasureEnchantments) return;
         List<String> exceptions = config.wanderingTraderSettings.wandererEnchantmentExceptions;
 
         List<Enchantment> enchantmentList = config.wanderingTraderSettings.sellCurses ?
