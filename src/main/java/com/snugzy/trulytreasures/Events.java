@@ -20,10 +20,12 @@ public class Events {
 
     @SubscribeEvent
     public static void onWandererTrades(WandererTradesEvent event) {
+        if (!TrulyTreasuresConfig.sellTreasureEnchantments.get()) return;
+
         List<String> exceptions = TrulyTreasuresConfig.wandererEnchantmentExceptions.get();
         List<String> cursedEnchantments = TrulyTreasuresConfig.enchantmentsWithCurses.get();
-        List<Enchantment> enchantmentList = TrulyTreasuresConfig.sellCurses.get() ? Registry.ENCHANTMENT.stream().filter((e) -> { return !exceptions.contains(e.getRegistryName().toString()) && e.isTreasureOnly() && e.isTradeable(); }).collect(Collectors.toList()) : Registry.ENCHANTMENT.stream().filter((e) -> { return !exceptions.contains(e.getRegistryName().toString()) && e.isTreasureOnly() && e.isTradeable() && !e.isCurse(); }).collect(Collectors.toList());
-        List<Enchantment> curseList = Registry.ENCHANTMENT.stream().filter((c) -> { return c.isCurse() && c.isTradeable(); }).collect(Collectors.toList());
+        List<Enchantment> enchantmentList = TrulyTreasuresConfig.sellCurses.get() ? Registry.ENCHANTMENT.stream().filter((e) -> !exceptions.contains(e.getRegistryName().toString()) && e.isTreasureOnly() && e.isTradeable()).collect(Collectors.toList()) : Registry.ENCHANTMENT.stream().filter((e) -> !exceptions.contains(e.getRegistryName().toString()) && e.isTreasureOnly() && e.isTradeable() && !e.isCurse()).collect(Collectors.toList());
+        List<Enchantment> curseList = Registry.ENCHANTMENT.stream().filter((c) -> c.isCurse() && c.isTradeable()).collect(Collectors.toList());
 
         for (Enchantment enchantment : enchantmentList) {
             for (int level = enchantment.getMinLevel(); level <= enchantment.getMaxLevel(); level++) {

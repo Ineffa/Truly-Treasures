@@ -14,12 +14,14 @@ public class TrulyTreasuresConfig {
     public static final ForgeConfigSpec.IntValue basePrice;
     public static final ForgeConfigSpec.IntValue maxTrades;
     public static final ForgeConfigSpec.BooleanValue sellCurses;
+    public static final ForgeConfigSpec.BooleanValue sellTreasureEnchantments;
+    public static final ForgeConfigSpec.BooleanValue removeTreasureEnchantments;
     public static final ForgeConfigSpec.ConfigValue<List<String>> villagerEnchantmentExceptions;
     public static final ForgeConfigSpec.ConfigValue<List<String>> wandererEnchantmentExceptions;
     public static final ForgeConfigSpec.ConfigValue<List<String>> enchantmentsWithCurses;
 
     static {
-        builder.push("Truly Treasures Config");
+        builder.push("Wandering Trader Settings");
 
         basePrice = builder
                 .comment("Defines the base integer value used to generate the prices of the books, which is multiplied based on the level of the enchantment. Prices are calculated as follows:",
@@ -35,22 +37,34 @@ public class TrulyTreasuresConfig {
                 .comment("Defines whether it is possible for wandering traders to sell curse enchantments or not")
                 .define("Wandering traders should sell curses", false);
 
-        villagerEnchantmentExceptions = builder
-                .comment("List of enchantments to be kept by villagers. Any enchantments listed here will not be removed from villager trading",
-                        "TIP: If you want an enchantment to be completely ignored by this mod, you can add it to both this option and the \"Enchantments not sold by wandering traders\"",
-                        "EXAMPLE: \"[\"minecraft:frost_walker\", \"momentum:momentum\", \"leap:leaping\"]\"")
-                .define("Enchantments villagers will keep", Lists.newArrayList(""));
+        sellTreasureEnchantments = builder
+                .comment("Disabling this will completely prevent wandering traders from selling any treasure enchantments")
+                .define("Wandering traders should sell treasure enchantments", true);
 
         wandererEnchantmentExceptions = builder
                 .comment("List of enchantments that should not be sold by wandering traders. Any enchantments listed here will not be sold by wandering traders",
                         "TIP: If you want an enchantment to be completely ignored by this mod, you can add it to both this option and the \"Enchantments villagers will keep\"",
                         "EXAMPLE: \"[\"minecraft:frost_walker\", \"momentum:momentum\", \"leap:leaping\"]\"")
-                .define("Enchantments not sold by wandering traders", Lists.newArrayList(""));
+                .define("Enchantments not sold by wandering traders", Lists.newArrayList());
 
         enchantmentsWithCurses = builder
                 .comment("List of enchantments that should have curses added to them. If an enchantment is listed here, it will always have a curse added alongside it when sold by a wandering trader",
                         "EXAMPLE: \"[\"minecraft:frost_walker\", \"momentum:momentum\", \"leap:leaping\"]\"")
-                .define("Enchantments with curses added to them", Lists.newArrayList(""));
+                .define("Enchantments with curses added to them", Lists.newArrayList());
+
+        builder.pop();
+
+        builder.push("Villager Settings");
+
+        removeTreasureEnchantments = builder
+                .comment("Disabling this will completely disable the removal of any treasure enchantments from villagers")
+                .define("Remove treasure enchantments from villagers", true);
+
+        villagerEnchantmentExceptions = builder
+                .comment("List of enchantments to be kept by villagers. Any enchantments listed here will not be removed from villager trading",
+                        "TIP: If you want an enchantment to be completely ignored by this mod, you can add it to both this option and the \"Enchantments not sold by wandering traders\"",
+                        "EXAMPLE: \"[\"minecraft:frost_walker\", \"momentum:momentum\", \"leap:leaping\"]\"")
+                .define("Enchantments villagers will keep", Lists.newArrayList());
 
         builder.pop();
 
