@@ -1,7 +1,7 @@
-package com.snugzy.trulytreasures.config;
+package com.ineffa.trulytreasures.config;
 
 import com.google.common.collect.Lists;
-import com.snugzy.trulytreasures.TrulyTreasures;
+import com.ineffa.trulytreasures.TrulyTreasures;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;

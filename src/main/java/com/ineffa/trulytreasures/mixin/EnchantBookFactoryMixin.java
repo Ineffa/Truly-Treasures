@@ -1,6 +1,6 @@
-package com.snugzy.trulytreasures.mixin;
+package com.ineffa.trulytreasures.mixin;
 
-import com.snugzy.trulytreasures.TrulyTreasures;
+import com.ineffa.trulytreasures.TrulyTreasures;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.Entity;
@@ -8,6 +8,7 @@ import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
@@ -19,7 +20,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Mixin(TradeOffers.EnchantBookFactory.class)

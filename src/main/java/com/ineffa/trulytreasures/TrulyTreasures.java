@@ -1,6 +1,6 @@
-package com.snugzy.trulytreasures;
+package com.ineffa.trulytreasures;
 
-import com.snugzy.trulytreasures.config.TrulyTreasuresConfig;
+import com.ineffa.trulytreasures.config.TrulyTreasuresConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;

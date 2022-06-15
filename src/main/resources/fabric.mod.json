@@ -6,12 +6,12 @@
   "name": "Truly Treasures",
   "description": "Highly configurable mod that makes wandering traders sell treasure enchantments instead of villagers, making them truly rare and special enchantments",
   "authors": [
-    "Snugzy"
+    "Ineffa"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/truly-treasures",
-    "sources": "https://github.com/Snugzy/Truly-Treasures",
-    "issues": "https://github.com/Snugzy/Truly-Treasures/issues"
+    "sources": "https://github.com/Ineffa/Truly-Treasures",
+    "issues": "https://github.com/Ineffa/Truly-Treasures/issues"
   },
 
   "license": "GNU Lesser General Public License v3.0",
@@ -21,19 +21,19 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.snugzy.trulytreasures.TrulyTreasures"
+      "com.ineffa.trulytreasures.TrulyTreasures"
     ],
     "modmenu": [
-      "com.snugzy.trulytreasures.config.TrulyTreasuresModMenu"
+      "com.ineffa.trulytreasures.config.TrulyTreasuresModMenu"
     ]
   },
   "mixins": [
     "trulytreasures.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.14.7",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "~1.19",
     "java": ">=17"
   }
 }

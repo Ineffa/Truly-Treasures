@@ -1,4 +1,4 @@
-package com.snugzy.trulytreasures.config;
+package com.ineffa.trulytreasures.config;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
@@ -11,8 +11,6 @@ public class TrulyTreasuresModMenu implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> {
-            return AutoConfig.getConfigScreen(TrulyTreasuresConfig.class, parent).get();
-        };
+        return parent -> AutoConfig.getConfigScreen(TrulyTreasuresConfig.class, parent).get();
     }
 }
