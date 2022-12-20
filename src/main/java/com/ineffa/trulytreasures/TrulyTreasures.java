@@ -11,8 +11,8 @@ import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.village.TradeOffer;
 
 import java.util.List;
@@ -31,12 +31,12 @@ public class TrulyTreasures implements ModInitializer {
         List<String> exceptions = config.wanderingTraderSettings.wandererEnchantmentExceptions;
 
         List<Enchantment> enchantmentList = config.wanderingTraderSettings.sellCurses ?
-                Registry.ENCHANTMENT.stream().filter((e) -> !exceptions.contains(Registry.ENCHANTMENT.getId(e).toString()) && e.isTreasure() && e.isAvailableForEnchantedBookOffer()).collect(Collectors.toList())
+                Registries.ENCHANTMENT.stream().filter((e) -> !exceptions.contains(Registries.ENCHANTMENT.getId(e).toString()) && e.isTreasure() && e.isAvailableForEnchantedBookOffer()).collect(Collectors.toList())
                 :
-                Registry.ENCHANTMENT.stream().filter((e) -> !exceptions.contains(Registry.ENCHANTMENT.getId(e).toString()) && e.isTreasure() && e.isAvailableForEnchantedBookOffer() && !e.isCursed()).collect(Collectors.toList());
+                Registries.ENCHANTMENT.stream().filter((e) -> !exceptions.contains(Registries.ENCHANTMENT.getId(e).toString()) && e.isTreasure() && e.isAvailableForEnchantedBookOffer() && !e.isCursed()).collect(Collectors.toList());
 
         // Debug
-        // enchantmentList.forEach(e -> System.out.println(Registry.ENCHANTMENT.getId(e).toString()));
+        // enchantmentList.forEach(e -> System.out.println(Registries.ENCHANTMENT.getId(e).toString()));
 
         for (Enchantment enchantment : enchantmentList) {
             for (int level = enchantment.getMinLevel(); level <= enchantment.getMaxLevel(); level++) {
@@ -44,8 +44,8 @@ public class TrulyTreasures implements ModInitializer {
             }
         }
 
-        RegistryEntryAddedCallback.event(Registry.ENCHANTMENT).register((rawId, id, enchantment) -> {
-            if (!exceptions.contains(Registry.ENCHANTMENT.getId(enchantment).toString()) && enchantment.isTreasure() && enchantment.isAvailableForEnchantedBookOffer()) {
+        RegistryEntryAddedCallback.event(Registries.ENCHANTMENT).register((rawId, id, enchantment) -> {
+            if (!exceptions.contains(Registries.ENCHANTMENT.getId(enchantment).toString()) && enchantment.isTreasure() && enchantment.isAvailableForEnchantedBookOffer()) {
                 if (!(!config.wanderingTraderSettings.sellCurses && enchantment.isCursed())) {
                     for (int level = enchantment.getMinLevel(); level <= enchantment.getMaxLevel(); level++) {
                         addWandererBookTrade(enchantment, level);
@@ -66,6 +66,6 @@ public class TrulyTreasures implements ModInitializer {
         TradeOfferHelper.registerWanderingTraderOffers(2, (factory -> factory.add(((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, price), book, maxTrades, xp, 1.0F)))));
 
         // Debug
-        // System.out.println(Registry.ENCHANTMENT.getId(enchantment).toString() + " level " + level + " price is " + price);
+        // System.out.println(Registries.ENCHANTMENT.getId(enchantment).toString() + " level " + level + " price is " + price);
     }
 }
