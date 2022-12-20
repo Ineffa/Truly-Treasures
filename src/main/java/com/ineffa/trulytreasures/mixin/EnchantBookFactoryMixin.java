@@ -7,9 +7,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import org.spongepowered.asm.mixin.Final;
@@ -31,7 +31,7 @@ public class EnchantBookFactoryMixin {
     @Inject(at = @At("HEAD"), method = "create", cancellable = true)
     private void removeTreasureEnchantments(Entity entity, Random random, CallbackInfoReturnable<TradeOffer> callback) {
         List<String> exceptions = TrulyTreasures.config.villagerSettings.villagerEnchantmentExceptions;
-        List<Enchantment> enchantmentList = Registry.ENCHANTMENT.stream().filter((e) -> !TrulyTreasures.config.villagerSettings.removeTreasureEnchantments || exceptions.contains(Registry.ENCHANTMENT.getId(e).toString()) ? e.isAvailableForEnchantedBookOffer() : !e.isTreasure() && e.isAvailableForEnchantedBookOffer()).collect(Collectors.toList());
+        List<Enchantment> enchantmentList = Registries.ENCHANTMENT.stream().filter((e) -> !TrulyTreasures.config.villagerSettings.removeTreasureEnchantments || exceptions.contains(Registries.ENCHANTMENT.getId(e).toString()) ? e.isAvailableForEnchantedBookOffer() : !e.isTreasure() && e.isAvailableForEnchantedBookOffer()).collect(Collectors.toList());
         Enchantment enchantment = enchantmentList.get(random.nextInt(enchantmentList.size()));
         int i = MathHelper.nextInt(random, enchantment.getMinLevel(), enchantment.getMaxLevel());
         ItemStack itemStack = EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantment, i));
@@ -42,7 +42,7 @@ public class EnchantBookFactoryMixin {
         }
 
         // Debug
-        // enchantmentList.forEach(e -> System.out.println(Registry.ENCHANTMENT.getId(e).toString()));
+        // enchantmentList.forEach(e -> System.out.println(Registries.ENCHANTMENT.getId(e).toString()));
 
         callback.setReturnValue(new TradeOffer(new ItemStack(Items.EMERALD, j), new ItemStack(Items.BOOK), itemStack, 12, this.experience, 0.2F));
     }
