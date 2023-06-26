@@ -3,54 +3,47 @@ package com.ineffa.trulytreasures;
 import com.ineffa.trulytreasures.config.TrulyTreasuresConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
-import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.item.EnchantedBookItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.village.TradeOffer;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.EnchantedBookItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraftforge.common.BasicItemListing;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.village.WandererTradesEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
-public class TrulyTreasures implements ModInitializer {
+@Mod("trulytreasures")
+public class TrulyTreasures {
     public static final String MOD_ID = "trulytreasures";
     public static TrulyTreasuresConfig config;
 
-    @Override
-    public void onInitialize() {
+    public TrulyTreasures() {
         AutoConfig.register(TrulyTreasuresConfig.class, GsonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(TrulyTreasuresConfig.class).getConfig();
 
-        WandererTreasureEnchantmentFilter traderFilter = config.wanderingTraderSettings.treasureEnchantmentFilter;
-
-        traderFilter.filterEnchantments(Registries.ENCHANTMENT.stream()).forEach(TrulyTreasures::addWandererTradesForEnchantment);
-
-        RegistryEntryAddedCallback.event(Registries.ENCHANTMENT).register((rawId, id, enchantment) -> {
-            if (traderFilter.acceptsEnchantment(enchantment)) addWandererTradesForEnchantment(enchantment);
-        });
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private static void addWandererTradesForEnchantment(Enchantment enchantment) {
+    protected static void addWandererTradesForEnchantment(Enchantment enchantment, WandererTradesEvent event) {
         for (int level = enchantment.getMinLevel(); level <= enchantment.getMaxLevel(); level++) {
-            ItemStack book = EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(enchantment, level));
+            ItemStack book = EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, level));
             book.setCount(1);
             int maxTrades = config.wanderingTraderSettings.maxTrades;
             int basePrice = config.wanderingTraderSettings.basePrice;
-            int price = enchantment.getMaxLevel() == 1 ? basePrice * 2 : MathHelper.clamp(basePrice * level, 0, 64);
+            int price = enchantment.getMaxLevel() == 1 ? basePrice * 2 : Mth.clamp(basePrice * level, 0, 64);
             int xp = enchantment.getMaxLevel() == 1 ? 10 : 5 * level;
 
-            TradeOfferHelper.registerWanderingTraderOffers(2, (factory -> factory.add(((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, price), book, maxTrades, xp, 1.0F)))));
+            event.getRareTrades().add(new BasicItemListing(price, book, maxTrades, xp));
         }
     }
 
     public static boolean isEnchantmentAllowedForVillagers(Enchantment enchantment) {
-        if (!enchantment.isAvailableForEnchantedBookOffer()) return false;
+        if (!enchantment.isTradeable()) return false;
 
-        return !config.villagerSettings.enchantmentRemovalMode.shouldRemoveEnchantment(enchantment) || config.villagerSettings.enchantmentsToKeep.contains(Objects.requireNonNull(Registries.ENCHANTMENT.getId(enchantment)).toString());
+        return !config.villagerSettings.enchantmentRemovalMode.shouldRemoveEnchantment(enchantment) || config.villagerSettings.enchantmentsToKeep.contains(Objects.requireNonNull(ForgeRegistries.ENCHANTMENTS.getKey(enchantment)).toString());
     }
 }

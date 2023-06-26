@@ -1,14 +1,14 @@
 package com.ineffa.trulytreasures;
 
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 import java.util.function.Predicate;
 
 public enum VillagerEnchantmentRemovalMode {
-    TREASURE(Enchantment::isTreasure),
-    REGULAR(enchantment -> !enchantment.isTreasure()),
-    CURSES(Enchantment::isCursed),
-    POSITIVE(enchantment -> !enchantment.isCursed()),
+    TREASURE(Enchantment::isTreasureOnly),
+    REGULAR(enchantment -> !enchantment.isTreasureOnly()),
+    CURSES(Enchantment::isCurse),
+    POSITIVE(enchantment -> !enchantment.isCurse()),
     NONE(enchantment -> false);
 
     private final Predicate<Enchantment> removalPredicate;
